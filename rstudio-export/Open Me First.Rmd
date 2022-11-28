@@ -1,0 +1,121 @@
+---
+title: "Constants and Variables - Tracking"
+author: "Who are you?"
+date: "2022-08-26"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(wordcloud2)
+```
+
+## Constants and Variables
+
+Go to <http://www.fark.com/dawww>.
+
+Population: Entries listed on the Fark D'awww page.
+
+Constants: Every entry is guaranteed to have four pieces: Cute stories , Comments , Geners , and Dates
+
+Variables: Any particular entry may have different different dates, varrying amount of comments
+
+## Numbers
+
+```{r data gathering}
+dawwww_comments <- 
+  c(8, 6, 4, 32, 16, 26, 14, 7, 6,8, 9, 9, 24, 13, 5, 0, 16, 12, 2, 7, 9, 19, 10, 5, 7, 1, 2, 8, 10, 3, 7, 12, 4, 17, 27, 8, 1, 9, 13, 17, 3, 13, 10)
+
+```
+
+## Visualize
+
+```{r visualize}
+dawwww_data <- 
+    data.frame(dawwww_comments)
+
+dawwww_data %>% 
+    ggplot( mapping = 
+              aes(x=dawwww_comments)
+    ) + 
+  geom_boxplot(fill = "yellow")
+
+dawwww_data %>% 
+    ggplot( mapping = 
+              aes(x=dawwww_comments)
+    ) + 
+  geom_histogram(fill="green")
+
+dawwww_data %>% 
+    ggplot( mapping = 
+              aes(x=dawwww_comments)
+    ) + 
+  geom_density(fill = "blue")
+
+```
+
+## Words
+
+```{r words}
+dawwww_sources <-
+  c("twitter",  "twitter", "mirror", "upi.com", "the dodo", "twitter", "10tv.com", "He's", "a", "good", "boy", "give", "him", "a", "snack", "doggie", "treats", "available", "at", "Krispy", "Kreme", "for", "National", "Dog", "Day", "tomorrow")
+
+dawwww_words <- 
+  dawwww_sources %>% 
+    table()
+
+dawwww_words %>% 
+  wordcloud2(size=0.5)
+
+```
+
+Go to <https://r-graph-gallery.com/> to see a variety of other visualization options in R.
+
+```{r}
+my_height <- 
+c(70,72,71,63,67,69,68,70,80,69,68,74,64,69,62)
+
+mydata <-
+  data.frame(my_height)
+
+mydata %>%
+    ggplot( mapping = 
+              aes(x =my_height)
+    ) +
+  geom_histogram(color = "black", fill= "blue" , bins = 27) + stat_ecdf()
+          
+```
+
+```{r}
+knitr::opts_chunk$set(echo = TRUE)
+install.packages('tidyverse')
+install.packages('clean')
+
+
+{r}
+
+library(tidyverse)
+library(clean)
+
+# Generate Data
+
+## Simulate rolling dice.
+
+numrolls <- 
+  1000
+
+sums <- 
+  0 
+
+for(i in 1:numrolls) {
+  sums[i] = sample(1:6,1) + sample(1:6, 1)  
+}
+
+sums <- 
+  sums %>% 
+    sort() 
+
+```
